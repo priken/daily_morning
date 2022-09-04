@@ -5,6 +5,7 @@ from wechatpy.client.api import WeChatMessage, WeChatTemplate
 import requests
 import os
 import random
+import emoji
 
 #服务器的repository secret
 today = datetime.now()
@@ -52,6 +53,9 @@ def get_words():
 def get_random_color():
   return "#%06x" % random.randint(0, 0xFFFFFF)
 
+def get_emoji():
+    return emoji.emojize(' :red_heart:')
+
 
 
 #输出内容
@@ -59,6 +63,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, low, high, airQuality= get_weather()
-data = {"weather":{"value":wea},"temperaturelow":{"value":low}, "temperaturehigh":{"value":high},"airQuality":{"value":airQuality}, "love_days":{"value":get_count(), "color":get_random_color()},"birthdaywoman_left":{"value":get_birthdaywoman(), "color":get_random_color()},"birthdayman_left":{"value":get_birthdayman(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea},"temperaturelow":{"value":low}, "temperaturehigh":{"value":high},"airQuality":{"value":airQuality}, "love_days":{"value":get_count(), "color":get_random_color(), get_emoji},"birthdaywoman_left":{"value":get_birthdaywoman(), "color":get_random_color()},"birthdayman_left":{"value":get_birthdayman(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
