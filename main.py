@@ -34,7 +34,7 @@ def get_birthdaywoman():
   next = datetime.strptime(str(date.today().year) + "-" + birthdaywoman, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
-  return "\033[32m(next - today).days\033[0m"
+  return (next - today).days
 
 
 def get_birthdayman():
@@ -59,6 +59,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, temperature = get_weather()
-data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count()},"birthdaywoman_left":{"value":get_birthdaywoman()},"birthdayman_left":{"value":get_birthdayman()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea},"temperature":{"value":temperature},"love_days":{"value":get_count(), "color":get_random_color()},"birthdaywoman_left":{"value":get_birthdaywoman(), "color":get_random_color()},"birthdayman_left":{"value":get_birthdayman(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
