@@ -34,7 +34,8 @@ def get_birthdaywoman():
   next = datetime.strptime(str(date.today().year) + "-" + birthdaywoman, "%Y-%m-%d")
   if next < datetime.now():
     next = next.replace(year=next.year + 1)
-  return (next - today).days
+  return "\033[32m(next - today).days\033[0m"
+
 
 def get_birthdayman():
   next = datetime.strptime(str(date.today().year) + "-" + birthdayman, "%Y-%m-%d")
