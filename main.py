@@ -30,6 +30,10 @@ def get_count():
   delta = today - datetime.strptime(start_date, "%Y-%m-%d")
   return delta.days
 
+def get_targetdays():
+  target =datetime.strptime(target_date, "%Y-%m-%d") - today
+  return target.days
+
 def get_birthdaywoman():
   next = datetime.strptime(str(date.today().year) + "-" + birthdaywoman, "%Y-%m-%d")
   if next < datetime.now():
@@ -59,6 +63,6 @@ client = WeChatClient(app_id, app_secret)
 
 wm = WeChatMessage(client)
 wea, low, high, airQuality= get_weather()
-data = {"weather":{"value":wea},"temperaturelow":{"value":low}, "temperaturehigh":{"value":high},"airQuality":{"value":airQuality}, "love_days":{"value":get_count(), "color":get_random_color()},"birthdaywoman_left":{"value":get_birthdaywoman(), "color":get_random_color()},"birthdayman_left":{"value":get_birthdayman(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
+data = {"weather":{"value":wea},"temperaturelow":{"value":low}, "temperaturehigh":{"value":high},"airQuality":{"value":airQuality}, "love_days":{"value":get_count(), "color":get_random_color()}, "target_days":{"value":get_targetdays(), "color":get_random_color()}, "birthdaywoman_left":{"value":get_birthdaywoman(), "color":get_random_color()},"birthdayman_left":{"value":get_birthdayman(), "color":get_random_color()},"words":{"value":get_words(), "color":get_random_color()}}
 res = wm.send_template(user_id, template_id, data)
 print(res)
