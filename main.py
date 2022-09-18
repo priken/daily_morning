@@ -9,6 +9,7 @@ import random
 #服务器的repository secret
 today = datetime.now()
 start_date = os.environ['START_DATE']
+target_date = os.environ['TARGET_DATE']
 city = os.environ['CITY']
 birthdayman = os.environ['BIRTHDAYMAN']
 birthdaywoman = os.environ['BIRTHDAYWOMAN']
