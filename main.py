@@ -31,8 +31,8 @@ def get_count():
   return delta.days
 
 def get_targetdays():
-  target =datetime.strptime(target_date, "%Y-%m-%d") - today
-  return target.days
+  delta =datetime.strptime(target_date, "%Y-%m-%d") - today
+  return delta.days
 
 def get_birthdaywoman():
   next = datetime.strptime(str(date.today().year) + "-" + birthdaywoman, "%Y-%m-%d")
